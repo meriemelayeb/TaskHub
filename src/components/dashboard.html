@@ -1,0 +1,88 @@
+<div class="header-bar">
+  <div class="header-left">
+    <img src="assets/taskhub.png" alt="Logo" class="logo-img">
+    <span class="logo-text">TaskHub</span>
+  </div>
+  <div class="header-right">
+    <button class="header-btn" (click)="goBack()">← Retour Admin</button>
+  </div>
+</div>
+
+<div class="dashboard-container">
+
+  <h1 class="title">📊 Dashboard TaskHub</h1>
+
+  <!-- ====== KPI DIRECTEUR ====== -->
+  <h2 class="section-title">📌 Indicateurs Directeur</h2>
+
+  <div class="stats-grid">
+
+    <div class="stat-card">
+      <h3>Réunions cette semaine</h3>
+      <p class="value info">{{ meetingsThisWeek }}</p>
+    </div>
+
+    <div class="stat-card">
+      <h3>Charge moyenne</h3>
+      <p class="value warning">{{ averageWorkload }} tâches / membre</p>
+    </div>
+
+    <div class="stat-card">
+      <h3>Tâches complétées</h3>
+      <p class="value success">{{ totalCompletedTasks }}</p>
+    </div>
+
+  </div>
+
+  <!-- ====== KPIs EXISTANTS ====== -->
+  <h2 class="section-title">📦 Statistiques des tâches</h2>
+
+  <div class="stats-grid">
+
+    <div class="stat-card">
+      <h3>Total tâches</h3>
+      <p class="value">{{ totalTasks }}</p>
+    </div>
+
+    <div class="stat-card">
+      <h3>À faire</h3>
+      <p class="value warning">{{ tasksTodo }}</p>
+    </div>
+
+    <div class="stat-card">
+      <h3>En cours</h3>
+      <p class="value info">{{ tasksInProgress }}</p>
+    </div>
+
+    <div class="stat-card">
+      <h3>Terminées</h3>
+      <p class="value success">{{ tasksDone }}</p>
+    </div>
+
+  </div>
+
+  <!--PIE CHART -->
+  <h2 class="section-title">🧁 Statut des tâches (Camembert)</h2>
+
+  <div class="pie-chart-container">
+    <canvas id="statusPieChart"></canvas>
+  </div>
+
+  <!-- ====== GRAPH BAR ====== -->
+  <h2 class="section-title">📈 Avancement des tâches</h2>
+
+  <div class="chart">
+    <div class="bar" [style.height.%]="(tasksTodo / totalTasks) * 100">
+      <span>À faire</span>
+    </div>
+
+    <div class="bar" [style.height.%]="(tasksInProgress / totalTasks) * 100">
+      <span>En cours</span>
+    </div>
+
+    <div class="bar" [style.height.%]="(tasksDone / totalTasks) * 100">
+      <span>Terminées</span>
+    </div>
+  </div>
+
+</div>

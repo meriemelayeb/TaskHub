@@ -1,0 +1,160 @@
+/* ===== HEADER ===== */
+.header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1f1362;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.1);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    gap: 15px;
+}
+
+.logo-img {
+    width: 100px; /* LOGO PLUS GRAND */
+    height: 120px;
+    border-radius: 15px;
+    object-fit: contain;
+}
+
+.logo-text {
+    font-size: 20px; /* TEXTE PLUS GRAND */
+    color: white;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.header-btn {
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 7px 12px;
+  border: none;
+  border-radius: 8px;
+  background: #7c3aed;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+.header-btn:hover {
+  background: #5a1c84;
+}
+
+/* ===== GLOBAL ===== */
+.dashboard-container {
+  padding: 25px;
+  width: 100%;       
+  margin: 0;  
+  background: #1f1362;
+}
+
+.section-title {
+  margin-top: 30px;
+  margin-bottom: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #d7d7d7;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+}
+
+h1.title {
+  color: #d7d7d7; 
+}
+
+.stat-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.stat-card h3 {
+  font-size: 15px;
+  color: #555;
+}
+
+.value {
+  font-size: 25px;
+  margin-top: 8px;
+  font-weight: bold;
+}
+
+.warning { color: #e67e22; }
+.info { color: #2980b9; }
+.success { color: #27ae60; }
+.danger { color: #c0392b; }
+
+/* ===== FAKE BAR GRAPH ===== */
+.chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  height: 180px;
+  margin-top: 20px;
+}
+
+.bar {
+  width: 22%;
+  background: #d7d7d7;
+  border-radius: 6px;
+  position: relative;
+  transition: 0.3s;
+}
+
+.bar span {
+  position: absolute;
+  bottom: -20px;
+  width: 100%;
+  text-align: center;
+  font-size: 13px;
+  color:#d7d7d7;
+}
+
+/* ===== PIE CHART ===== */
+.pie-chart-container {
+  width: 380px;
+  height: 380px;   /* OBLIGATOIRE */
+  margin: auto;
+}
+
+#statusPieChart {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+
+/* ===== TABLE ===== */
+.top-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.top-table th, .top-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.top-table th {
+  background: #f7f7f7;
+  text-align: left;
+}

@@ -1,0 +1,199 @@
+/* Reset et styles de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Conteneur principal */
+.register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1e1b4b 0%, #2d1f5e 100%);
+    padding: 20px;
+    position: relative;
+}
+
+/* Logo et texte */
+.logo-container {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    gap: 15px;
+}
+
+.logo-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 12px;
+    object-fit: contain;
+}
+
+.logo-text {
+    font-size: 40px;
+    color: white;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+/* Contenu principal */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+
+/* Titre */
+.title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 50px;
+    letter-spacing: -0.5px;
+}
+
+/* Formulaire */
+.register-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Labels */
+.register-form label {
+    display: block;
+    text-align: center;
+    color: white;
+    margin-bottom: 8px;
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* Inputs */
+.register-form input {
+    width: 100%;
+    padding: 18px 24px;
+    border: none;
+    border-radius: 50px;
+    background: #e8eef3;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.register-form input::placeholder {
+    color: #9ca3af;
+}
+
+.register-form input:focus {
+    background: white;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+}
+
+.register-form input.ng-invalid.ng-touched {
+    border: 2px solid #ef4444;
+    background: #fee2e2;
+}
+
+/* Messages d'erreur */
+.error span {
+  color: #b52f2f; /* rouge clair, tu peux mettre #ff0000 ou #C1B9E6 violet clair */
+  font-size: 18px;
+  margin-top: 5px;
+  display: block; /* pour chaque message sur sa ligne */
+}
+
+.error-email,
+.error-password,
+.error-confirm {
+    display: block;
+}
+
+/* Bouton */
+.register-btn {
+    width: auto;
+    padding: 16px 70px;
+    border: none;
+    border-radius: 50px;
+    background: #16a34a;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 30px;
+    align-self: center;
+}
+
+.register-btn:hover:not(:disabled) {
+    background: #15803d;
+    transform: translateY(-2px);
+}
+
+.register-btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.register-btn:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .logo-container {
+        top: 20px;
+        left: 20px;
+    }
+    
+    .logo-img {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .logo-text {
+        font-size: 28px;
+    }
+    
+    .title {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+    
+    .register-form label {
+        font-size: 16px;
+    }
+    
+    .register-btn {
+        padding: 14px 50px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-text {
+        font-size: 24px;
+    }
+    
+    .title {
+        font-size: 1.8rem;
+    }
+    
+    .register-form input {
+        padding: 15px 20px;
+        font-size: 15px;
+    }
+}

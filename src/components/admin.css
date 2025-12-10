@@ -1,0 +1,359 @@
+/* Logo et texte - POSITION EN HAUT À GAUCHE */
+.logo-container {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    gap: 15px;
+}
+
+.logo-img {
+    width: 100px; /* LOGO PLUS GRAND */
+    height: 120px;
+    border-radius: 15px;
+    object-fit: contain;
+}
+
+.logo-text {
+    font-size: 20px; /* TEXTE PLUS GRAND */
+    color: white;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1f1362;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.1);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-btn {
+  margin-left: 10px;
+  padding: 7px 12px;
+  border: none;
+  border-radius: 8px;
+  background: #7c3aed;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+.header-btn:hover {
+  background: #5a1c84;
+}
+
+.logout-btn {
+  margin-right: 10px;
+  background: #dc2626;
+}
+
+.logout-btn:hover {
+  background: #a21d1d;
+}
+
+.avatar {
+  width: 50px;
+  height: 40px;
+  background: #6c5ce7;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  margin-right: auto;
+}
+
+.admin-container {
+  display: flex;
+  justify-content: space-around;
+  padding: 40px;
+  background: #1f1362;
+  min-height: 100vh;
+}
+
+
+.card {
+  background: #e9f4fb;
+  padding: 25px;
+  border-radius: 20px;
+  width: 47%;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto; /* permet aux colonnes de s'adapter au contenu */
+}
+
+th, td {
+  padding: 8px;
+  word-wrap: break-word; /* permet le retour à la ligne automatique */
+  white-space: normal;   /* autorise les retours à la ligne */
+}
+
+th {
+  text-align: center;   /* centre le texte horizontalement */
+  vertical-align: middle; /* centre le texte verticalement */
+}
+
+.top-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+select {
+  padding: 7px 0px;
+  border-radius: 10px;
+  border: none;
+  background: #5a1c84;
+  color:white;
+  outline: none;
+}
+
+button {
+  padding: 4px 8px;
+  font-size: 12px;
+}
+
+.add-btn {
+  padding: 7px 15px;
+  border-radius: 10px;
+  border: none;
+  background: #7c3aed;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Bouton Supprimer */
+.delete-btn {
+  padding: 5px 6px;
+  background: crimson;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s, opacity 0.3s;
+}
+
+/* Effet hover quand le bouton est actif */
+.delete-btn:hover:not(:disabled) {
+  background: darkred;
+}
+
+/* Style quand le bouton est désactivé */
+.delete-btn:disabled {
+  background: #ccc;       /* gris clair */
+  color: #666;            /* texte gris foncé */
+  cursor: not-allowed;    /* curseur interdit */
+  opacity: 0.7;           
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background: #000;
+  color: white;
+  padding: 10px;
+}
+
+td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: center;
+}
+
+.form-ajout {
+  background: #e9f4fb;
+  padding: 15px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-group label {
+  font-weight: 600;
+  font-size: 14px;
+  color: #1f1362;
+}
+
+.form-group input,
+.form-group select {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 14px;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.1);
+}
+
+.full-width {
+  flex: 2;
+}
+
+.full-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px;
+  font-size: 15px;
+}
+
+.badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 13px;
+  display: inline-block;
+  text-align: center;
+}
+
+/* Réunions */
+.badge-blue {
+  background: #e0ecff;
+  color: #2563eb;
+}
+
+.badge-red {
+  background: #ffe4e6;
+  color: #dc2626;
+}
+
+.badge-green {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+/* Tâches */
+.badge-orange {
+  background: #fff7ed;
+  color: #ea580c;
+}
+
+.badge-grey {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.state-btn {
+  margin-left: 6px;
+  padding: 5px 10px;
+  background: #5e60ce;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.state-btn:hover {
+  background: #4a4fc7;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right:0;
+  bottom: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  width: 350px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal input, 
+.modal textarea,
+.modal select {
+  padding: 6px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.edit-btn {
+  background: orange;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.save-btn {
+  background: green;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+}
+
+.cancel-btn {
+  background: gray;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+}

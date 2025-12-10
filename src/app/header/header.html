@@ -1,0 +1,28 @@
+<header class="header">
+
+  <!-- Logo à gauche -->
+  <div class="left-section">
+    <img src="assets/taskhub.png" alt="TaskHub Logo" class="logo">
+    <span class="app-name">TaskHub</span>
+  </div>
+
+  <!-- Partie droite -->
+  <div class="right-section">
+
+    <!-- Bouton Dashboard -->
+    <button class="header-btn" (click)="goToDashboard()">
+      Dashboard
+    </button>
+
+    <!-- Initiales utilisateur -->
+    <div class="user-circle">
+      {{ userInitials }}
+    </div>
+
+    <!-- Bouton Déconnexion -->
+    <button class="header-btn logout" (click)="logout()">
+      Déconnexion
+    </button>
+  </div>
+
+</header>

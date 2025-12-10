@@ -1,0 +1,32 @@
+<div class="login-container">
+    <div class="logo-container">
+        <img src="../assets/taskhub.png" alt="Logo" class="logo-img">
+        <span class="logo-text">TaskHub</span>
+    </div>
+    
+    <div class="main-content">
+        <h1 class="title">Se connecter</h1>
+        
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+            
+            <label>Email</label>
+            <input formControlName="email" type="email" placeholder="Votre e-mail">
+            <div class="error" *ngIf="email?.touched && email?.invalid">
+                <span class="error-email" *ngIf="email?.errors?.['required']">Email requis</span>
+                <span class="error-email" *ngIf="email?.errors?.['email']">Email invalide</span>
+            </div>
+
+
+            <label>Mot de passe</label>
+            <input formControlName="password" type="password" placeholder="Mot de passe">
+            <div class="error" *ngIf="password?.touched && password?.invalid">
+                <span class="error-password" *ngIf="password?.errors?.['required']">Mot de passe requis</span>
+                <span class="error-password" *ngIf="password?.errors?.['minlength']">
+                    Mot de passe minimum 6 caractères
+                </span>
+            </div>
+
+            <button type="submit" [disabled]="loginForm.invalid" class="login-btn">Connexion</button>
+        </form>
+    </div>
+</div>

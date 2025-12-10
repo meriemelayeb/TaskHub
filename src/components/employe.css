@@ -1,0 +1,228 @@
+/* -------- LOGO + TEXTE -------- */
+.logo-container {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  gap: 15px;
+}
+
+.logo-img {
+  width: 100px;
+  height: 120px;
+  border-radius: 15px;
+  object-fit: contain;
+}
+
+.logo-text {
+  font-size: 20px;
+  color: white;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* -------- HEADER -------- */
+.header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1f1362;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.1);
+  padding: 10px 20px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-btn {
+  margin-left: 10px;
+  padding: 7px 12px;
+  border: none;
+  border-radius: 8px;
+  background: #7c3aed;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+.header-btn:hover {
+  background: #5a1c84;
+}
+
+.logout-btn {
+  background: #dc2626;
+}
+
+.logout-btn:hover {
+  background: #a21d1d;
+}
+
+/* -------- AVATAR -------- */
+.avatar {
+  width: 50px;
+  height: 40px;
+  background: #6c5ce7;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+/* -------- CONTAINER -------- */
+.admin-container {
+  display: flex;
+  justify-content: space-around;
+  padding: 40px;
+  background: #1f1362;
+  min-height: 100vh;
+  gap: 20px;
+}
+
+/* -------- CARDS -------- */
+.card {
+  background: #e9f4fb;
+  padding: 25px;
+  border-radius: 20px;
+  width: 45%;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* -------- TABLE -------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background: #000;
+  color: white;
+  padding: 10px;
+}
+
+td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: center;
+}
+
+/* -------- SELECT -------- */
+select {
+  padding: 7px 12px;
+  border-radius: 10px;
+  border: none;
+  background: #5a1c84;
+  color: white;
+  outline: none;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* -------- BADGES -------- */
+.badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 13px;
+  display: inline-block;
+}
+
+.badge-blue {
+  background: #e0ecff;
+  color: #2563eb;
+}
+
+.badge-red {
+  background: #ffe4e6;
+  color: #dc2626;
+}
+
+.badge-green {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+/* Tâches */
+.badge-orange {
+  background: #fff7ed;
+  color: #ea580c;
+}
+
+.badge-grey {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+/* -------- RESPONSIVE ----- */
+@media (max-width: 1000px) {
+  .admin-container {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .card {
+    width: 100%;
+  }
+
+  .header-bar {
+    flex-wrap: wrap;
+  }
+}
+/* Bouton Supprimer */
+.delete-btn {
+  padding: 5px 12px;
+  background: crimson;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s, opacity 0.3s;
+}
+
+/* Effet hover quand le bouton est actif */
+.delete-btn:hover:not(:disabled) {
+  background: darkred;
+}
+
+/* Style quand le bouton est désactivé */
+.delete-btn:disabled {
+  background: #ccc;       /* gris clair */
+  color: #666;            /* texte gris foncé */
+  cursor: not-allowed;    /* curseur interdit */
+  opacity: 0.7;           /* un peu transparent */
+}
+
+/* Style pour le filtre mauve */
+.top-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+select {
+  padding: 7px 0px;
+  border-radius: 10px;
+  border: none;
+  background: #5a1c84;
+  color:white;
+  outline: none;
+}

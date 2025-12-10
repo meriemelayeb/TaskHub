@@ -1,0 +1,254 @@
+<div class="header-bar">
+  <div class="header-left">
+    <img src="assets/taskhub.png" alt="Logo" class="logo-img">
+    <span class="logo-text">TaskHub</span>
+  </div>
+
+  <div class="header-right">
+    <div class="avatar">{{ initials }}</div>
+    <button class="header-btn" (click)="goToDashboard()">Dashboard</button>
+    <button class="header-btn logout-btn" (click)="logout()">Déconnexion</button>
+  </div>
+</div>
+
+<div class="admin-container">
+
+  <!-- ================== RÉUNIONS ================== -->
+  <div class="card">
+    <h2>Réunions</h2>
+
+    <div class="top-actions">
+      <select (change)="filtrerPar($event)">
+        <option value="all">Filtrer par</option>
+        <option value="jour">Aujourd'hui</option>
+        <option value="semaine">Cette semaine</option>
+        <option value="mois">Ce mois</option>
+      </select>
+    </div>
+
+    <!-- Formulaire ajout réunion -->
+    <div class="form-ajout">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nom</label>
+          <input type="text" [(ngModel)]="newReunionNom" placeholder="Nom de la réunion">
+        </div>
+
+        <div class="form-group">
+          <label>Description</label>
+          <input type="text" [(ngModel)]="newReunionDesc" placeholder="Description">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Date</label>
+          <input type="date" [(ngModel)]="newReunionDate">
+        </div>
+
+        <div class="form-group">
+          <label>État</label>
+          <select [(ngModel)]="newReunionEtat">
+            <option value="Prévue">Prévue</option>
+            <option value="Annulée">Annulée</option>
+            <option value="Terminée">Terminée</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="add-btn full-btn" (click)="ajouterReunionManuel()">
+        + Ajouter la réunion
+      </button>
+    </div>
+
+    <!-- Table réunions -->
+    <table>
+      <thead>
+        <tr>
+          <th>Réunion</th>
+          <th>Description</th>
+          <th>État</th>
+          <th>Date</th>
+          <th>Modifier</th>
+          <th>Supprimer</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let reunion of reunionsFiltrees">
+          <td>{{ reunion.nom }}</td>
+          <td>{{ reunion.description }}</td>
+
+          <td>
+            <span [ngClass]="getReunionClass(reunion.etat)" class="badge">
+              {{ reunion.etat }}
+            </span>
+          </td>
+
+          <td>{{ reunion.date | date:'dd/MM/yyyy' }}</td>
+
+          <td>
+            <button
+              class="edit-btn"
+              (click)="openEditReunionPopup(reunion)">
+              Modifier
+            </button>
+          </td>
+
+          <td>
+            <button
+              class="delete-btn"
+              [disabled]="reunion.etat !== 'Terminée'"
+              (click)="supprimerReunion(reunion.id)">
+              Supprimer
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ================== TÂCHES ================== -->
+  <div class="card">
+    <h2>Tâches à faire</h2>
+
+    <!-- Formulaire ajout tâche -->
+    <div class="form-ajout">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Titre</label>
+          <input type="text" [(ngModel)]="newTaskTitle" placeholder="Titre de la tâche">
+        </div>
+
+        <div class="form-group">
+          <label>Assigné à</label>
+          <input type="text" [(ngModel)]="newTaskAssignedTo" placeholder="Nom">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group full-width">
+          <label>Description</label>
+          <input type="text" [(ngModel)]="newTaskDesc" placeholder="Description">
+        </div>
+
+        <div class="form-group">
+          <label>Statut</label>
+          <select [(ngModel)]="newTaskStatus">
+            <option value="À faire">À faire</option>
+            <option value="En cours">En cours</option>
+            <option value="Terminée">Terminée</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="add-btn full-btn" (click)="ajouterTacheManuel()">
+        + Ajouter la tâche
+      </button>
+    </div>
+
+    <!-- Table tâches -->
+    <table>
+      <thead>
+        <tr>
+          <th>Tâche</th>
+          <th>Description</th>
+          <th>Assigné à</th>
+          <th>Statut</th>
+          <th>Modifier</th>
+          <th>Supprimer</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let tache of taches">
+          <td>{{ tache.title }}</td>
+          <td>{{ tache.description }}</td>
+          <td>{{ tache.assignedTo }}</td>
+
+          <td>
+            <span [ngClass]="getTaskClass(tache.status)" class="badge">
+              {{ tache.status }}
+            </span>
+          </td>
+
+          <td>
+            <button class="edit-btn" (click)="openEditPopup(tache)">
+              Modifier
+            </button>
+          </td>
+
+          <td>
+            <button
+              class="delete-btn"
+              [disabled]="tache.status !== 'Terminée'"
+              (click)="supprimerTache(tache.id)">
+              Supprimer
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- ============== POPUP MODIFIER TÂCHE ================== -->
+<div class="modal-backdrop" *ngIf="showEditPopup">
+
+  <div class="modal">
+    <h2>Modifier la tâche</h2>
+
+    <label>Titre</label>
+    <input type="text" [(ngModel)]="selectedTask.title">
+
+    <label>Description</label>
+    <textarea [(ngModel)]="selectedTask.description"></textarea>
+
+    <label>Assigné à</label>
+    <input type="text" [(ngModel)]="selectedTask.assignedTo">
+
+    <label>Statut</label>
+    <select [(ngModel)]="selectedTask.status">
+      <option value="À faire">À faire</option>
+      <option value="En cours">En cours</option>
+      <option value="Terminée">Terminée</option>
+    </select>
+
+    <div class="modal-actions">
+      <button class="save-btn" (click)="saveEditedTask()">Enregistrer</button>
+      <button class="cancel-btn" (click)="closeEditPopup()">Annuler</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- ================== POPUP MODIFIER RÉUNION ================== -->
+<div class="modal-backdrop" *ngIf="showEditReunionPopup">
+
+  <div class="modal">
+    <h2>Modifier la réunion</h2>
+
+    <label>Nom</label>
+    <input type="text" [(ngModel)]="selectedReunion.nom">
+
+    <label>Description</label>
+    <textarea [(ngModel)]="selectedReunion.description"></textarea>
+
+    <label>Date</label>
+    <input type="date" [(ngModel)]="selectedReunion.date">
+
+    <label>État</label>
+    <select [(ngModel)]="selectedReunion.etat">
+      <option value="Prévue">Prévue</option>
+      <option value="En cours">En cours</option>
+      <option value="Terminée">Terminée</option>
+    </select>
+
+    <div class="modal-actions">
+      <button class="save-btn" (click)="saveEditedReunion()">Enregistrer</button>
+      <button class="cancel-btn" (click)="closeEditReunionPopup()">Annuler</button>
+    </div>
+  </div>
+
+</div>
