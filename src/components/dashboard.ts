@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { DecimalPipe, CommonModule } from '@angular/common';
 import { LocalDbService } from '../app/services/db.services';
 import Chart from 'chart.js/auto';
 import { Task } from '../app/models/task';
 
 @Component({
   selector: 'app-dashboard',
+  imports: [DecimalPipe, CommonModule],
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css']
 })
@@ -20,7 +22,11 @@ export class DashboardComponent implements OnInit {
   averageWorkload = 0;
   totalCompletedTasks = 0;
 
-  topEmployees: any[] = [];
+  tasksCompletedThisWeek = 0;
+  employeeActivity: any[] = [];
+  meetingTaskRatio = 0;
+  meetingTaskRatioStatus = ""; // Pour afficher bon / limite / mauvais
+
 
   constructor(private db: LocalDbService) {}
 
@@ -64,26 +70,31 @@ export class DashboardComponent implements OnInit {
     const totalUsers = users.size || 1;
     this.averageWorkload = Math.round(this.totalTasks / totalUsers);
 
-    // Top employés
-    this.topEmployees = this.getTopEmployees(tasks);
-  }
+  //   PRODUCTIVITÉ PAR SEMAINE
+  this.tasksCompletedThisWeek = tasks.filter(t => {
+  if (t.status?.trim().toLowerCase() !== "terminée") return false;
+  const d = new Date(t.createdAt);
+  return d >= start && d <= end;
+  }).length;
 
-  // Classement employés
-  getTopEmployees(tasks: Task[]): { name: string, completed: number }[] {
-  const map: { [key: string]: number } = {};
+  //   ACTIVITÉ DES EMPLOYÉS
+    this.employeeActivity = this.getEmployeeActivity(tasks);
 
-  tasks.forEach(t => {
-    if (t.assignedTo && t.status?.trim().toLowerCase() === 'terminée') {
-      map[t.assignedTo] = (map[t.assignedTo] || 0) + 1;
+
+  //   RATIO RÉUNIONS / TÂCHES TERMINÉES
+
+    this.meetingTaskRatio = this.calculateMeetingTaskRatio();
+
+    if (this.meetingTaskRatio < 0.5) {
+      this.meetingTaskRatioStatus = "🟢 Excellent : Productivité élevée";
+    } else if (this.meetingTaskRatio < 1) {
+      this.meetingTaskRatioStatus = "🟡 Acceptable : Attention au trop de réunions";
+    } else {
+      this.meetingTaskRatioStatus = "🔴 Trop de réunions par rapport au travail produit";
     }
-  });
+    console.log('Employee activity:', this.employeeActivity);
 
-  // Convertit le map en tableau et trie par nombre de tâches terminées
-  return Object.entries(map)
-    .map(([name, completed]) => ({ name, completed }))
-    .sort((a, b) => b.completed - a.completed)
-    .slice(0, 2); // Top 5
-}
+  }
 
   // ============================
   //          PIE CHART
@@ -121,6 +132,32 @@ export class DashboardComponent implements OnInit {
   }, 300);
 }
 
+ getEmployeeActivity(tasks: Task[]) {
+  const map: { [key: string]: number } = {};
+
+  tasks.forEach(t => {
+    // Prendre en compte assignedTo comme string ou objet
+    let name = '';
+    if (typeof t.assignedTo === 'string') {
+      name = t.assignedTo.trim();
+    } else if (t.assignedTo && typeof t.assignedTo === 'object' && 'name' in t.assignedTo) {
+      name = (t.assignedTo as any).name.trim();
+    }
+
+    if (name !== '') {
+      map[name] = (map[name] || 0) + 1;
+    }
+  });
+
+  return Object.entries(map)
+    .map(([name, total]) => ({ name, total }))
+    .sort((a, b) => b.total - a.total);
+}
+
+ calculateMeetingTaskRatio(): number {
+  if (this.totalCompletedTasks === 0) return Infinity;
+  return this.meetingsThisWeek / this.totalCompletedTasks;
+  }
   goBack() {
     window.history.back();
   }

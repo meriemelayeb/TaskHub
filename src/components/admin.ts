@@ -83,7 +83,8 @@ export class AdminComponent implements OnInit {
       title: this.newTaskTitle,
       description: this.newTaskDesc,
       assignedTo: this.newTaskAssignedTo,
-      status: this.newTaskStatus
+      status: this.newTaskStatus,
+      createdAt: new Date().toISOString(),
     };
 
     // Ajouter dans la base locale

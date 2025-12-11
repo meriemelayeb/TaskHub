@@ -18,17 +18,19 @@
   <div class="stats-grid">
 
     <div class="stat-card">
-      <h3>Réunions cette semaine</h3>
+      <h3>📅 Réunions cette semaine</h3>
       <p class="value info">{{ meetingsThisWeek }}</p>
     </div>
 
     <div class="stat-card">
-      <h3>Charge moyenne</h3>
-      <p class="value warning">{{ averageWorkload }} tâches / membre</p>
+      <h3>⚖️ Charge moyenne</h3>
+      <p class="value warning">
+        {{ averageWorkload }} tâche{{ averageWorkload > 1 ? 's' : '' }} / membre
+      </p>
     </div>
 
     <div class="stat-card">
-      <h3>Tâches complétées</h3>
+      <h3>✅ Tâches complétées</h3>
       <p class="value success">{{ totalCompletedTasks }}</p>
     </div>
 
@@ -83,6 +85,21 @@
     <div class="bar" [style.height.%]="(tasksDone / totalTasks) * 100">
       <span>Terminées</span>
     </div>
+  </div>
+
+    <div class="card kpi">
+      <h2 class="section-title">👥 Activité des employés</h2>
+        <ul style="color: whitesmoke; font-weight: bold;">
+          <li *ngFor="let emp of employeeActivity">
+            {{ emp.name }} : {{ emp.total }} tâche{{ emp.total > 1 ? 's' : '' }}
+          </li>
+        </ul>
+    </div>
+
+    <div class="card kpi">
+      <h2 class="section-title">🔁 Ratio Réunions / Tâches terminées</h2>
+      <p class="value info">{{ meetingTaskRatio | number:'1.2-2' }}</p>
+      <small style="color: white;">{{ meetingTaskRatioStatus }}</small>
   </div>
 
 </div>

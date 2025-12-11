@@ -4,4 +4,5 @@ export interface Task {
   description: string;
   assignedTo: string; // nom de l'utilisateur
   status: 'En cours' | 'Terminée'  | 'À faire';
+  createdAt: string;
 }

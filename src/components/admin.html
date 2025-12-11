@@ -104,6 +104,9 @@
             </button>
           </td>
         </tr>
+        <tr *ngIf="reunions.length === 0">
+            <td colspan="6">Aucune réunion.</td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -187,6 +190,9 @@
             </button>
           </td>
         </tr>
+        <tr *ngIf="taches.length === 0">
+          <td colspan="6">Aucune tâche assignée.</td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -241,7 +247,7 @@
     <label>État</label>
     <select [(ngModel)]="selectedReunion.etat">
       <option value="Prévue">Prévue</option>
-      <option value="En cours">En cours</option>
+      <option value="Annulée">Annulée</option>
       <option value="Terminée">Terminée</option>
     </select>
 

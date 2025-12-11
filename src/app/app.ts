@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { DecimalPipe } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
@@ -29,6 +30,7 @@ import { DashboardComponent } from '../components/dashboard';
     EmployeeComponent,
     DashboardComponent
   ],
+  providers: [DecimalPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
