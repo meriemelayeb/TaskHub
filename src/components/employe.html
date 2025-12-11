@@ -32,7 +32,6 @@
             <th>Description</th>
             <th>Date</th>
             <th>État</th>
-            <th>Changer état</th>
           </tr>
         </thead>
 
@@ -45,12 +44,6 @@
         <span [ngClass]="getReunionClass(reu.etat)" class="badge">
               {{ reu.etat }}
             </span>
-    </td>
-    <td>
-        <select [(ngModel)]="reu.etat"
-                (change)="changeReunionEtat(reu, reu.etat)">
-        <option *ngFor="let e of etatOptions" [value]="e">{{ e }}</option>
-        </select>
     </td>
 
         <tr *ngIf="reunions.length === 0">

@@ -70,13 +70,6 @@ export class EmployeeComponent implements OnInit {
     }
   }
 
-  supprimerReunion(id: number) {
-    if (confirm('Voulez-vous vraiment supprimer cette réunion ?')) {
-      this.db.deleteReunion(id);
-      this.loadData();
-    }
-  }
-
     logout() {
     localStorage.removeItem('currentUser'); // clé correcte
     this.router.navigate([''], { replaceUrl: true });
